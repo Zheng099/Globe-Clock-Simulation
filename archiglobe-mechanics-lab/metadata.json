@@ -1,0 +1,6 @@
+{
+  "name": "ArchiGlobe Mechanics Lab",
+  "description": "A design engineering simulator for the Globe Clock project, evaluating torque, shear stress, and impact forces on a rotating equator second hand.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
