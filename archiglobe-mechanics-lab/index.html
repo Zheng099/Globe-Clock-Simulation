@@ -1,98 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.77">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="zh-TW"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;地球儀時鐘模擬器&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* 這裡結合了你 index.css 的樣式 */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body { font-family: sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; padding: 20px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.container { background: #1e293b; padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.3); display: flex; gap: 2rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.canvas-area { width: 300px; height: 300px; border: 2px solid #38bdf8; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; background: radial-gradient(circle, #1e40af, #0f172a); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.hand { position: absolute; width: 100%; height: 4px; background: #f43f5e; transform-origin: center; box-shadow: 0 0 10px #f43f5e; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.controls { width: 250px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.stats { background: #020617; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #38bdf8; margin-top: 1rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>input[type=range] { width: 100%; margin: 10px 0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.warning { color: #fb7185; font-weight: bold; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;🌍 Globe Clock Mechanics Lab&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="canvas-area"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="hand" class="hand"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div style="z-index:10"&gt;核心軸點&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="controls"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h3&gt;實驗參數&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label&gt;重量 (Mass): &lt;span id="mVal"&gt;2.0&lt;/span&gt; kg&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="range" id="mass" min="0.1" max="10" step="0.1" value="2.0"&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label&gt;轉速 (Speed): &lt;span id="sVal"&gt;10&lt;/span&gt;&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="range" id="speed" min="1" max="100" value="10"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="stats"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h4&gt;實時力學數據&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p&gt;扭矩: &lt;span id="torsion"&gt;0&lt;/span&gt; N-mm&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p&gt;衝擊力: &lt;span id="impact"&gt;0&lt;/span&gt; N&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;hr&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p id="status"&gt;✅ 結構安全&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// 這裡結合了你 App.tsx 的邏輯</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const hand = document.getElementById('hand');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const massInput = document.getElementById('mass');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const speedInput = document.getElementById('speed');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let angle = 0;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function update() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const m = parseFloat(massInput.value);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const s = parseFloat(speedInput.value);</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('mVal').innerText = m;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('sVal').innerText = s;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// 動畫</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>angle = (angle + s/10) % 360;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>hand.style.transform = `rotate(${angle}deg)`;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// 計算</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const t = (m * 9.8 * 150 * (s/100)).toFixed(2);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const i = (m * 15.5).toFixed(2);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('torsion').innerText = t;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('impact').innerText = i;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const status = document.getElementById('status');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (t &gt; 40) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>status.innerText = "🚨 警告：軸心負荷過重";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>status.className = "warning";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>status.innerText = "✅ 結構安全";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>status.className = "";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>requestAnimationFrame(update);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>update();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
+
