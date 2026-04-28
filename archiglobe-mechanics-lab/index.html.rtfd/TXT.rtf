@@ -1,0 +1,61 @@
+{\rtf1\ansi\ansicpg936\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset134 PingFangSC-Semibold;}
+{\colortbl;\red255\green255\blue255;\red42\green156\blue243;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c19216\c68235\c96471;\csgray\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa360\partightenfactor0
+
+\f0\b\fs28\fsmilli14400 \cf2 \cb3 \expnd0\expndtw0\kerning0
+<!DOCTYPE html>\
+<html lang="zh-TW">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>\'b5\'d8\'c7\'f2\'83\'78\'95\'72\'e7\'8a - \'c1\'a6\'8c\'57\'d4\'5c\'94\'e0 App</title>\
+    <style>\
+        body \{ font-family: sans-serif; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; align-items: center; padding: 40px; margin: 0; \}\
+        .app-container \{ display: flex; gap: 40px; background: #1e293b; padding: 35px; border-radius: 24px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid #334155; max-width: 1000px; \}\
+        .visualizer \{ width: 300px; height: 300px; border-radius: 50%; border: 4px solid #38bdf8; display: flex; align-items: center; justify-content: center; position: relative; background: radial-gradient(circle, #1e40af, #0f172a); \}\
+        .hand \{ position: absolute; width: 100%; height: 4px; background: #fb7185; transform-origin: center; box-shadow: 0 0 15px #fb7185; \}\
+        .controls \{ width: 280px; \}\
+        .dashboard \{ width: 300px; background: #020617; padding: 20px; border-radius: 15px; border-left: 6px solid #38bdf8; \}\
+        input[type=range] \{ width: 100%; margin: 15px 0; cursor: pointer; \}\
+    </style>\
+</head>\
+<body>\
+    <h1 style="color:#38bdf8">\uc0\u55356 \u57101  \'b5\'d8\'c7\'f2\'83\'78\'95\'72\'e7\'8a\'a3\'ba\'d4\'4f\'d3\'8b\'b9\'a4\'8c\'57\'c4\'a3\'94\'4d</h1>\
+    <div class="app-container">\
+        <div class="visualizer"><div class="hand" id="hand"></div><div style="z-index:10">\'ba\'cb\'d0\'c4\'dd\'53\'fc\'63</div></div>\
+        <div class="controls">\
+            <h3>\'85\'a2\'94\'b5\'d5\'7b\'d5\'fb</h3>\
+            <label>\'d6\'d8\'c1\'bf: <span id="mVal">2.0</span> kg</label>\
+            <input type="range" id="mass" min="0.5" max="10" step="0.1" value="2.0">\
+            <label>\'de\'44\'cb\'d9: <span id="sVal">15</span></label>\
+            <input type="range" id="speed" min="1" max="100" value="15">\
+        </div>\
+        <div class="dashboard">\
+            <h3>\'c1\'a6\'8c\'57\'94\'b5\'93\'fe</h3>\
+            <p>\'c5\'a4\'be\'d8: <span id="torsion">0</span> N-mm</p>\
+            <p>\'d0\'6e\'93\'f4\'c1\'a6: <span id="impact">0</span> N</p>\
+            <p id="status" style="color:#10b981; font-weight:bold;">\uc0\u9989  \'df\'5c\'d7\'f7\'b0\'b2\'c8\'ab</p>\
+        </div>\
+    </div>\
+    <script>\
+        const hand = document.getElementById('hand');\
+        let angle = 0;\
+        function run() \{\
+            const m = document.getElementById('mass').value;\
+            const s = document.getElementById('speed').value;\
+            document.getElementById('mVal').innerText = m;\
+            document.getElementById('sVal').innerText = s;\
+            angle = (angle + s/10) % 360;\
+            hand.style.transform = `rotate($\{angle\}deg)`;\
+            document.getElementById('torsion').innerText = (m * 9.8 * 1.5 * s).toFixed(2);\
+            document.getElementById('impact').innerText = (m * 25).toFixed(2);\
+            requestAnimationFrame(run);\
+        \}\
+        run();\
+    </script>\
+</body>\
+</html>}
